@@ -3,6 +3,11 @@ package com.product.input.service;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import com.opencsv.CSVWriter;
@@ -12,42 +17,49 @@ import com.product.input.domain.Product;
 public class ConvertToCsvServiceImpl implements ConvertToCsvService{
 
 	
-	public void convertData(Product productData) {
+	public void convertData(List<Product> productData) {
 		
-		System.out.println(productData.toString());
-		
-		
-		File file = new File("/file.csv");
+		File file = new File("D:\\file.csv");
 		
 	    try {
 	    	file.createNewFile();
-	    	
-	    	
-	        // create FileWriter object with file as parameter 
 	        FileWriter outputfile = new FileWriter(file); 
-	  
-	        // create CSVWriter object filewriter object as parameter 
-	        CSVWriter writer = new CSVWriter(outputfile); 
-	  
-	        // adding header to csv 
-	        String[] header = { "Name", "Class", "Marks" }; 
-	        writer.writeNext(header); 
-	  
-	        // add data to csv 
-	        String[] data1 = { "Aman", "10", "620" }; 
-	        writer.writeNext(data1); 
-	        String[] data2 = { "Suraj", "10", "630" }; 
-	        writer.writeNext(data2); 
-	  
-	        // closing writer connection 
+	        CSVWriter writer = new CSVWriter(outputfile);
+	        
+	        List<String> header=new ArrayList<String>();
+	        
+	        for(int i=0;i<Product.class.getDeclaredFields().length;i++){
+				String productDetailHeader=Product.class.getDeclaredFields()[i].getName();
+				header.add(productDetailHeader);
+			}
+	        
+	        writer.writeNext(header.toArray(new String[header.size()]));
+	        productData.forEach((x)->{
+				Method[] methods=x.getClass().getMethods();
+				List<Method> getters=new ArrayList<Method>();
+				List<String> data=new ArrayList<String>();
+				for (Method method:methods)
+			    {
+			        if(method.getName().contains("getProduct")){
+			        	getters.add(method);
+			        }
+			    }
+				for (Method method:getters)
+			    {
+					try {
+						data.add(method.invoke(x, null).toString());
+					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+						e.printStackTrace();
+					}
+			    }
+				writer.writeNext(data.toArray(new String[data.size()]));
+				data.clear();
+			});
 	        writer.close(); 
 	    } 
-	    catch (IOException e) { 
-	        // TODO Auto-generated catch block 
+	    catch (IOException e) {
 	        e.printStackTrace(); 
 	    }
-		
-		
 	}
 	
 	

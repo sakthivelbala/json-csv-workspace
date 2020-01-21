@@ -2,6 +2,9 @@ package com.product.input.domain;
 
 public class Product {
 	
+	//adding new variable with getter (convention: "getProdut") will automatically start adding values to the CSV file
+	//make sure getters follow same order as variables
+	
 	private int productId;
 	private String productName;
 	private int productPrice;
@@ -36,12 +39,4 @@ public class Product {
 		this.productPrice = productPrice;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
-				+ "]";
-	}
-	
-	
-	
 }

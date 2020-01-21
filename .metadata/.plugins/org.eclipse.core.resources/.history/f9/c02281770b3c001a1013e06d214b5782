@@ -1,0 +1,28 @@
+package com.product.input.domain;
+
+public class Product {
+	
+	public int productId;
+	public String productName;
+	public int productPrice;
+	
+	public Product() {
+		super();
+	}
+	
+	public Product(int productId, String productName, int productPrice) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
+				+ "]";
+	}
+	
+	
+	
+}

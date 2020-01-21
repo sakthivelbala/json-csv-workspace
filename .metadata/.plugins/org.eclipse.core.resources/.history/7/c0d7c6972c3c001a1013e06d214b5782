@@ -1,0 +1,8 @@
+package com.product.csvdisplay.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CSVInputController {
+
+}
