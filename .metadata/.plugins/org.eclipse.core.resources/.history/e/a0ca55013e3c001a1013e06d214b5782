@@ -1,0 +1,10 @@
+package com.product.csvdisplay.service;
+
+import java.io.File;
+
+
+public interface DisplayContentService {
+	
+	public String fileContentAsString(File file);
+
+}

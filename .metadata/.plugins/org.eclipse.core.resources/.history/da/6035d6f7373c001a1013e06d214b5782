@@ -1,0 +1,8 @@
+package com.product.input.Feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="display-csv")
+public interface DisplayServiceCommunication {
+
+}

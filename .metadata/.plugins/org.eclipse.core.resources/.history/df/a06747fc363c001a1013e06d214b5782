@@ -1,0 +1,5 @@
+package com.product.input.Feign;
+
+public interface DisplayServiceCommunication {
+
+}

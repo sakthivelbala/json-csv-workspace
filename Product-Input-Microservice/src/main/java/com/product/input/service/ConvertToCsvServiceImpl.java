@@ -1,21 +1,37 @@
 package com.product.input.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import com.opencsv.CSVWriter;
+import com.product.input.Feign.DisplayServiceCommunication;
 import com.product.input.domain.Product;
 
 @Service
 public class ConvertToCsvServiceImpl implements ConvertToCsvService{
 
+	@Autowired
+	private DisplayServiceCommunication displayMicroservice;
 	
 	public void convertData(List<Product> productData) {
 		
@@ -55,7 +71,11 @@ public class ConvertToCsvServiceImpl implements ConvertToCsvService{
 				writer.writeNext(data.toArray(new String[data.size()]));
 				data.clear();
 			});
-	        writer.close(); 
+	        writer.close();
+	        FileInputStream input = new FileInputStream(file);
+	        MultipartFile multipartFile = new MockMultipartFile("file",
+	                file.getName(), "text/plain", IOUtils.toByteArray(input));
+	        System.out.println(displayMicroservice.getDataFromCsv(multipartFile));
 	    } 
 	    catch (IOException e) {
 	        e.printStackTrace(); 
