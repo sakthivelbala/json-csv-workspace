@@ -6,6 +6,6 @@ import com.product.input.domain.Product;
 
 public interface ConvertToCsvService {
 	
-	public void convertData(List<Product> productData);
+	public String convertData(List<Product> productData);
 
 }

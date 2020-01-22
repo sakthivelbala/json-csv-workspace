@@ -1,0 +1,13 @@
+package com.product.configserver;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ProductAppConfigServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ProductAppConfigServerApplication.class, args);
+	}
+
+}

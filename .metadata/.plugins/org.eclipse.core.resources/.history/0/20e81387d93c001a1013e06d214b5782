@@ -1,0 +1,19 @@
+package com.product.input.Feign;
+
+import java.io.File;
+
+public class DisplayServiceCommunicationFallback implements DisplayServiceCommunication{
+
+	@Override
+	public String getDataFromCsv(File file) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String test(String input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

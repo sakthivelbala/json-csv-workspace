@@ -1,0 +1,21 @@
+package com.product.input.Feign;
+
+import org.springframework.stereotype.Component;
+
+
+@Component
+public class DisplayServiceCommunicationFallback implements DisplayServiceCommunication{
+
+	@Override
+	public String getDataFromCsv(byte[] file) {
+		// TODO Auto-generated method stub
+		return "file not sent";
+	}
+
+	@Override
+	public String test(String input) {
+		// TODO Auto-generated method stub
+		return "input microservice fallback";
+	}
+
+}

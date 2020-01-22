@@ -1,0 +1,13 @@
+package com.product.gateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ProductAppZuulGatewayApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ProductAppZuulGatewayApplication.class, args);
+	}
+
+}

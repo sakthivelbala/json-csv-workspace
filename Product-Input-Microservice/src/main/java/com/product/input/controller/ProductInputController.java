@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.product.input.domain.Product;
 import com.product.input.service.ConvertToCsvService;
+import com.product.input.service.IsActiveDisplayService;
 
 @RestController
 public class ProductInputController {
@@ -19,16 +20,17 @@ public class ProductInputController {
 	@Autowired
 	private ConvertToCsvService convertData;
 	
+	@Autowired
+	private IsActiveDisplayService isActiveDisplayService;
 	
 	@GetMapping("/test")
 	public String test() {
-		return "working";
+		return isActiveDisplayService.testService()+"\n Product Input Service Working";
 	}
 	
 	@PostMapping("/input")
-	public ResponseEntity<List<Product>> inputNewProduct(@RequestBody List<Product> inputProduct) {
-		convertData.convertData(inputProduct);
-		return new ResponseEntity<List<Product>>(inputProduct, HttpStatus.OK);
+	public ResponseEntity<String> inputNewProduct(@RequestBody List<Product> inputProduct) {
+		return new ResponseEntity<String>(convertData.convertData(inputProduct), HttpStatus.OK);
 		
 	}
 
