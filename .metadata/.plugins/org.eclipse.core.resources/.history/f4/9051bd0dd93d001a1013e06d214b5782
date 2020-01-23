@@ -1,0 +1,29 @@
+package com.product.csvdisplay.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.product.csvdisplay.service.DisplayContentService;
+
+@RestController
+public class CSVInputController {
+	
+	@Autowired
+	private DisplayContentService displayContentService;
+	
+	@PostMapping("${display.csv.upload.rest.path}")
+	public String uploadFile(@RequestParam("file") byte[] file){
+		return displayContentService.fileContentAsString(file);
+	}
+	
+	@PostMapping("${test.rest.path}")
+	public String test(@RequestParam("input") String input){
+		if(input.equals("test")){
+			return "CSV-display-service-working";
+		}
+		return "Improper input";
+	}
+
+}

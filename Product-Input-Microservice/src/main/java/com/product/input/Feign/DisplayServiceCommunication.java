@@ -5,13 +5,13 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name="display-csv",fallback=DisplayServiceCommunicationFallback.class)
+@FeignClient(name="${display.microservice.name}",fallback=DisplayServiceCommunicationFallback.class)
 public interface DisplayServiceCommunication {
 	
-	@PostMapping("/upload")
-	public String getDataFromCsv(@RequestParam("file") byte[] file);
+	@PostMapping("${display.csv.upload.rest.path}")
+	public String getDataFromCsv(@RequestParam("${display.csv.file.path.param.name}") byte[] file);
 	
-	@PostMapping("/test")
+	@PostMapping("${test.rest.path}")
 	public String test(@RequestParam("input") String input);
 
 }

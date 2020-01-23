@@ -1,0 +1,9 @@
+
+
+test.rest.path=/test
+input.rest.path=/input
+
+
+feign.hystrix.enabled=true
+spring.application.name=product-input
+

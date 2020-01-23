@@ -1,0 +1,16 @@
+
+
+test.rest.path=/test
+input.rest.path=/input
+display.csv.upload.rest.path=/upload
+
+display.microservice.name=display-csv
+
+display.csv.file.path.param.name=file
+display.csv.input.path.param.name=input
+
+product.service.working.response=Product-Input-Service-Working
+
+feign.hystrix.enabled=true
+spring.application.name=product-input
+

@@ -1,0 +1,8 @@
+
+
+display.csv.upload.rest.path=/upload
+test.rest.path=/test
+file.path.param.name=file
+
+spring.application.name=display-csv
+

@@ -3,6 +3,7 @@ package com.product.input.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,15 @@ public class ProductInputController {
 	@Autowired
 	private IsActiveDisplayService isActiveDisplayService;
 	
-	@GetMapping("/test")
+	@Value("${product.service.working.response}")
+	private String productInputWorkingResponse;
+	
+	@GetMapping("${test.rest.path}")
 	public String test() {
-		return isActiveDisplayService.testService()+"\n Product Input Service Working";
+		return isActiveDisplayService.testService()+" "+productInputWorkingResponse;
 	}
 	
-	@PostMapping("/input")
+	@PostMapping("${input.rest.path}")
 	public ResponseEntity<String> inputNewProduct(@RequestBody List<Product> inputProduct) {
 		return new ResponseEntity<String>(convertData.convertData(inputProduct), HttpStatus.OK);
 		
