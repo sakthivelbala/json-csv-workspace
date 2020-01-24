@@ -1,0 +1,5 @@
+package com.product.gateway.securityconfig;
+
+public class WebSecurityConfig {
+
+}
