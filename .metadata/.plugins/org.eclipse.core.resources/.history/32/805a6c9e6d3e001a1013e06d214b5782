@@ -1,0 +1,15 @@
+
+display.csv.file.path.param.name=file
+display.csv.input.path.param.name=input
+display.csv.upload.rest.path=/upload
+
+
+test.rest.path=/test
+
+test.input.param.value=test
+test.input.incorrect.response=wrongInput
+
+display.service.working.response=CSV-display-service-working
+
+spring.application.name=display-csv
+

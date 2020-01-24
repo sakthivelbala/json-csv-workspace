@@ -1,0 +1,10 @@
+
+
+
+
+test.input.incorrect.response=wrongInput
+
+display.service.working.response=CSV-display-service-working
+
+spring.application.name=display-csv
+

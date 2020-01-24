@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface DisplayServiceCommunication {
 	
 	@PostMapping("${display.csv.upload.rest.path}")
-	public String getDataFromCsv(@RequestParam("file") byte[] file);
+	public String getDataFromCsv(@RequestParam("${display.csv.file.path.param.name}") byte[] file);
 	
 	@PostMapping("${test.rest.path}")
 	public String test(@RequestParam("input") String input);

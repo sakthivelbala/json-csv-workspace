@@ -24,7 +24,7 @@ public class CSVInputController {
 	private String displayServiceWorking;
 	
 	@PostMapping("${display.csv.upload.rest.path}")
-	public String uploadFile(@RequestParam("file") byte[] file){
+	public String uploadFile(@RequestParam("${display.csv.file.path.param.name}") byte[] file){
 		return displayContentService.fileContentAsString(file);
 	}
 	
